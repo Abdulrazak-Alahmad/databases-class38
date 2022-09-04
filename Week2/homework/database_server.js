@@ -207,10 +207,6 @@ connection.query(sql, (err, res) => {
 //Exercise 4:5 Aggregate Functions  ___________ Minimum and maximum of the h-index of all authors per university.
 var sql = `SELECT auths.university, max(auths.h_index) AS maximum_h_index, min(auths.h_index) AS Minimum_h_index 
             FROM authors auths
-            JOIN authors_papers ap 
-             ON auths.author_no=ap.auth_no
-            JOIN research_Papers res 
-             ON ap.pap_no=res.paper_id
             GROUP BY university `;
 connection.query(sql, (err, res) => {
     if (err) { throw err }
