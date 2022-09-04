@@ -135,13 +135,15 @@ connection.query(sql, function (err, result) {
 /////////////////////////              MySQL exercises                /////////////////////////                    
 
 // Exercise 3:1 Joins   ___________ prints names of all authors and their corresponding mentors.
-var sql = `SELECT b.author_name,a.author_name 
+var sql = `SELECT b.author_name AS author_name, a.author_name AS mentor 
             FROM authors a 
             JOIN authors b 
              ON b.mentor=a.author_no`;
 connection.query(sql, (err, res) => {
     if (err) { throw err }
-    console.log(res)
+    res.forEach(element => {
+        console.log(`the author is :${element.author_name} and his/her mentor is: ${element.mentors}`)
+    });
 });
 
 //  Exercise 3:2 Joins  ___________ prints all columns of authors and their published paper_title
